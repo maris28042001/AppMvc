@@ -34,7 +34,7 @@ builder.Services.Configure<RazorViewEngineOptions>(options =>{
 // builder.Services.AddSingleton<ProductService>();
 // builder.Services.AddSingleton<ProductService, ProductService>();
 // builder.Services.AddSingleton(typeof(ProductService));
-builder.Services.AddSingleton(typeof(ProductService),typeof(ProductService));
+//builder.Services.AddSingleton(typeof(ProductService),typeof(ProductService));
 builder.Services.AddSingleton<PlanetService>();
 
 // Truy cập IdentityOptions
