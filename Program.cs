@@ -2,12 +2,17 @@
 using AppMvc.Services;
 using AppMvc.ExtendMethods;
 using Microsoft.AspNetCore.Mvc.Razor;
+using AppMvc.models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<AppDbContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AppMvcConnectionString"));
+});
 builder.Services.Configure<RazorViewEngineOptions>(options =>{
     // /Views/Controller/Action.cshtml
     // /MyView/Controller/Action.cshtml
