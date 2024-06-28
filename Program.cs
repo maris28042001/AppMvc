@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using AppMvc.Models;
 using AppMvc.Data;
 using Microsoft.Extensions.FileProviders;
+using AppMvc.Menu;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -104,6 +106,8 @@ builder.Services.AddIdentity<AppUser,IdentityRole>()
                 .AddDefaultTokenProviders();
 
 builder.Services.AddTransient<CartService>();
+builder.Services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
+builder.Services.AddTransient<AdminSidebarService>();
 
 var app = builder.Build();
 

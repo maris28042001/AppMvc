@@ -1,10 +1,12 @@
 @model AppMvc.Models.Blog.Category
-
+@using AppMvc.Menu
+@inject AdminSidebarService _AdminSidebarService
 @{
     ViewData["Title"] = "Sửa đổi chuyên mục";
+    Layout =  "/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
+
 
 <hr />
 <div class="row">
@@ -51,3 +53,11 @@
 }
 <partial name="_Summernote" model="summernote" />
 
+@{
+    _AdminSidebarService.SetActive("Category", "Index", "Blog");
+}
+
+@section Sidebar
+{
+    @Html.Raw(_AdminSidebarService.renderHtml())
+}

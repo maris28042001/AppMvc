@@ -1,9 +1,11 @@
 @model AppMvc.Models.Product.ProductModel
+@using AppMvc.Menu
+@inject AdminSidebarService _AdminSidebarService
 @{
     ViewData["Title"] = @Model.Title;
+    Layout =  "/Views/Shared/_LayoutAdmin.cshtml";     
 }
 
-<h1>@ViewData["Title"]</h1>
 
 <div>
     <hr />
@@ -64,3 +66,11 @@
     <a asp-action="Edit" asp-route-id="@Model.ProductID">Sửa</a> |
     <a asp-action="Index">Các sản phẩm</a>
 </div>
+@{
+    _AdminSidebarService.SetActive("ProductManage", "Index", "Product");
+}
+
+@section Sidebar
+{
+    @Html.Raw(_AdminSidebarService.renderHtml())
+}
