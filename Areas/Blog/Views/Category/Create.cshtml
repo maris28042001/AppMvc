@@ -1,15 +1,20 @@
 @model AppMvc.Models.Blog.Category
 
 @{
-    ViewData["Title"] = "Tạo chuyên mục Blog";          
+    ViewData["Title"] = "Tạo chuyên mục Blog";             
 }
+
+
+
+
+<h1>@ViewData["Title"]</h1>
 
 <h4>Category</h4>
 <hr />
 <div class="row">
     <div class="col-md-8">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="All" class="text-danger"></div>
            
             <div class="form-group">
                 <label asp-for="ParentCategoryId" class="control-label"></label>
@@ -42,3 +47,4 @@
 <div>
     <a asp-action="Index">Danh sách chuyên mục</a>
 </div>
+

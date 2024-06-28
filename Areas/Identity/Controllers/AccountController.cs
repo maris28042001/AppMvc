@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 using App.Areas.Identity.Models.AccountViewModels;
 
 using App.Models;
-using App.Utilities;
 using AppMvc.ExtendMethods;
 using AppMvc.models;
 using AppMvc.Models;
+using AppMvc.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -435,7 +435,7 @@ namespace App.Areas.Identity.Controllers
         // GET: /Account/ResetPassword
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult ResetPassword(string code = null)
+        public IActionResult ResetPassword(string? code = null)
         {
             return code == null ? View("Error") : View();
         }
@@ -480,7 +480,7 @@ namespace App.Areas.Identity.Controllers
         // GET: /Account/SendCode
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult> SendCode(string returnUrl = null, bool rememberMe = false)
+        public async Task<ActionResult> SendCode(string? returnUrl = null, bool rememberMe = false)
         {
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)

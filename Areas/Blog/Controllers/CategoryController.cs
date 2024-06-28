@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using AppMvc.Data;
 using AppMvc.models;
 
+
 namespace AppMvc.Net.Areas.Blog.Controllers
 {
     [Area("Blog")]
@@ -111,7 +112,6 @@ namespace AppMvc.Net.Areas.Blog.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
 
             var qr = (from c in _context.Categories select c)
                      .Include(c => c.ParentCategory)
