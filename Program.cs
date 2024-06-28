@@ -11,6 +11,12 @@ using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDistributedMemoryCache();           // Đăng ký dịch vụ lưu cache trong bộ nhớ (Session sẽ sử dụng nó)
+builder.Services.AddSession(cfg => {                    // Đăng ký dịch vụ Session
+    cfg.Cookie.Name = "appmvc";                 // Đặt tên Session - tên này sử dụng ở Browser (Cookie)
+    cfg.IdleTimeout = new TimeSpan(0,30, 0);    // Thời gian tồn tại của Session
+});
+
 builder.Services.AddOptions();
 var mailSetting = builder.Configuration.GetSection("MailSettings");
 builder.Services.Configure<MailSettings>(mailSetting);
@@ -96,6 +102,9 @@ builder.Services.AddAuthentication()
 builder.Services.AddIdentity<AppUser,IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
+
+builder.Services.AddTransient<CartService>();
+
 var app = builder.Build();
 
 
@@ -116,6 +125,7 @@ app.UseStaticFiles(new StaticFileOptions() {
                 ),
                 RequestPath = "/contents"
             });
+app.UseSession();
 
 app.AddStatusCodePage(); // Tuy bien Response loi: 400 - 599
 
