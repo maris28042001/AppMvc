@@ -17,3 +17,39 @@
 - ViewData
 - ViewBag
 - TemData
+
+## Areas
+- Là tên dùng để routing
+- Là cấu trúc thư mục chứa M.V.C
+- Thiết lập Area cho controller bằng ```[Area("AreaName")]```
+- Tạo cấu trúc thư mục
+```
+dotnet aspnet-codegenerator area Product 
+```
+
+## Route
+- endpoints.MapControllerRoute
+- endpoints.MapAreaControllerRoute
+- [AcceptVerbs("POST", "GET")]
+- [Route("pattern")]
+- [HttpGet] [HttpPost] 
+## Url Generation
+### UrlHelper : Action, ActionLink, RouteUrl, Link
+```
+Url.Action("PlanetInfo", "Planet", 
+            new {id = 1}, Context.Request.Scheme);
+
+Url.RouteUrl("default", new {controller= "First", 
+                             action="HelloView", 
+                            id = 1, 
+                            username =  "XuanThuLab"});
+```
+### HtmlTagHelper: ```<a> <button> <form>```
+Sử dụng thuộc tính:
+```
+asp-area="Area"
+asp-action="Action"
+asp-controller="Product"
+asp-route...="123"
+asp-route="default"
+```

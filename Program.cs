@@ -1,4 +1,6 @@
+
 using AppMvc.Services;
+using AppMvc.ExtendMethods;
 using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,7 @@ builder.Services.Configure<RazorViewEngineOptions>(options =>{
 // builder.Services.AddSingleton<ProductService, ProductService>();
 // builder.Services.AddSingleton(typeof(ProductService));
 builder.Services.AddSingleton(typeof(ProductService),typeof(ProductService));
+builder.Services.AddSingleton<PlanetService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,6 +35,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.AddStatusCodePage(); // Tuy bien Response loi: 400 - 599
+
 app.UseRouting();
 
 app.UseAuthentication();
@@ -40,5 +45,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+    
 app.MapRazorPages();
+
 app.Run();
